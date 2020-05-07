@@ -74,7 +74,7 @@ namespace PartesCampAPI.Controllers
 
         // POST: api/Clients
         [HttpPost]
-        public async Task<ActionResult<Client>> PostClient(ClientPostDTO clientDTO)
+        public async Task<ActionResult<ClientGetDTO>> PostClient(ClientPostDTO clientDTO)
         {
             var clientEntity = _mapper.Map<Client>(clientDTO);
             _clientRepository.AddClient(clientEntity);
@@ -82,7 +82,7 @@ namespace PartesCampAPI.Controllers
             await _clientRepository.SaveChangesAsync();
             await _clientRepository.GetClientAsync(clientEntity.ID);
 
-            return CreatedAtAction("GetClient", new { id = clientEntity.ID }, _mapper.Map<Client>(clientEntity));
+            return CreatedAtAction("GetClient", new { id = clientEntity.ID }, _mapper.Map<ClientGetDTO>(clientEntity));
         }
 
   

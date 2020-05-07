@@ -20,25 +20,7 @@ namespace PartesCampAPI.Repository
 
         #endregion
 
-        //private ClientGetDTO ToClientGetDTO(Client c)
-        //{
-        //    if (c == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(c));
-        //    }
-        //    return new ClientGetDTO
-        //    {
-        //        ID = c.ID,
-        //        Name = c.Name,
-        //        UserID = c.UserID,
-        //        Land = c.Land.Select(l => new LandGetDTO
-        //        {
-        //            ID = l.ID,
-        //            ClientID = l.ClientID,
-        //            Name = l.Name,
-        //        }).ToList()
-        //    };
-        //}
+
         #region GetBookAsync
         public async Task<Client> GetClientAsync(int id)
         {

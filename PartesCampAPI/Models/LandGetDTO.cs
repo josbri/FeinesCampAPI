@@ -13,6 +13,7 @@ namespace PartesCampAPI.Models
 
         public int ClientID { get; set; }
 
+        public List<TareaGetDTO> Tasks { get; set; }
 
         public LandGetDTO() { }
     }
