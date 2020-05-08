@@ -22,7 +22,7 @@ namespace PartesCampAPI.Repository
 
 
         #region GetBookAsync
-        public async Task<Client> GetClientAsync(int id)
+        public async Task<Client> GetByIdAsync(int id)
         {
             if (id == null)
             {
@@ -36,7 +36,7 @@ namespace PartesCampAPI.Repository
         #region AddClient
 
         //Not worth it to write async it.
-        public void AddClient(Client clientToAdd)
+        public void Create(Client clientToAdd)
         {
             if (clientToAdd == null)
             {
@@ -55,6 +55,42 @@ namespace PartesCampAPI.Repository
         }
         #endregion
 
+
+        #region Delete
+        public void Delete(Client clientToDelete)
+        {
+            if (clientToDelete == null)
+            {
+                throw new ArgumentException(nameof(clientToDelete));
+            }
+
+            try
+            {
+                _context.Remove(clientToDelete);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion
+
+        public void Update(Client clientToUpdate)
+        {
+            if (clientToUpdate == null)
+            {
+                throw new ArgumentException(nameof(clientToUpdate));
+            }
+            try
+            {
+                _context.Update(clientToUpdate);
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
         #region SaveChanges
         public async Task<bool> SaveChangesAsync()
         {

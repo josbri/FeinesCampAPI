@@ -8,18 +8,28 @@ namespace PartesCampAPI.Repository
 {
     public interface IClientRepository
     {
-        #region GetClientAsync
+        //#region GetAllAsync
+        //Task<Client> GetAll();
+        //#endregion
 
-        Task<Client> GetClientAsync(int id);
+        #region GetByIdAsync
+        Task<Client> GetByIdAsync(int id);
         #endregion
 
-        #region AddClient
+        #region Create
 
-        void AddClient(Client clientToAdd);
+        void Create(Client clientToAdd);
+        #endregion
+
+        #region Delete
+        void Delete(Client clientToAdd);
+        #endregion
+
+        #region Update
+        void Update(Client clientToAdd);
         #endregion
 
         #region SaveChangesAsync
-
         Task<bool> SaveChangesAsync();
         #endregion
     }

@@ -35,6 +35,7 @@ namespace PartesCampAPI
             services.AddControllers();
 
             services.AddScoped<IClientRepository, ClientRepository>();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

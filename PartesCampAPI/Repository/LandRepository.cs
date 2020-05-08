@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PartesCampAPI.Repository
 {
-    public class LandRepository : ILandRepository
+    public class LandRepository
     {
         #region Constructor
         private readonly PartesCampContext _context;

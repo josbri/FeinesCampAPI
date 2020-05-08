@@ -32,7 +32,7 @@ namespace PartesCampAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ClientGetDTO>> GetClient(int id)
         {
-            var clientEntity = await _clientRepository.GetClientAsync(id);
+            var clientEntity = await _clientRepository.GetByIdAsync(id);
 
             if (clientEntity == null)
             {
@@ -77,10 +77,10 @@ namespace PartesCampAPI.Controllers
         public async Task<ActionResult<ClientGetDTO>> PostClient(ClientPostDTO clientDTO)
         {
             var clientEntity = _mapper.Map<Client>(clientDTO);
-            _clientRepository.AddClient(clientEntity);
+            _clientRepository.Create(clientEntity);
 
             await _clientRepository.SaveChangesAsync();
-            await _clientRepository.GetClientAsync(clientEntity.ID);
+            await _clientRepository.GetByIdAsync(clientEntity.ID);
 
             return CreatedAtAction("GetClient", new { id = clientEntity.ID }, _mapper.Map<ClientGetDTO>(clientEntity));
         }
