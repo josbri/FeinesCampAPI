@@ -18,12 +18,12 @@ namespace PartesCampAPI.Repository
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         #endregion
-        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> FindFirstByConditionAsync(Expression<Func<T, bool>> expression)
         {
             return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T,bool>> expression)
+        public async Task<IEnumerable<T>> FindListByConditionAsync(Expression<Func<T,bool>> expression)
         {
             return await _context.Set<T>().Where(expression).AsNoTracking().ToListAsync();
         }

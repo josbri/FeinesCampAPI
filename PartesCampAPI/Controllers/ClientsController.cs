@@ -30,11 +30,23 @@ namespace PartesCampAPI.Controllers
         }
 
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<ClientGetDTO>>> GetByUserId(int id)
+        {
+            var clientEntity = await _clientService.FindByUserIdAsync(id);
+
+            if (clientEntity == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<ClientGetDTO>(clientEntity));
+        }
         // GET: api/Clients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ClientGetDTO>> GetClient(int id)
         {
-            var clientEntity = await _clientRepository.GetByConditionAsync(id);
+            var clientEntity = await _clientService.FindByIdAsync(id);
 
             if (clientEntity == null)
             {
@@ -46,7 +58,7 @@ namespace PartesCampAPI.Controllers
 
         // PUT: api/Clients/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, ClientPostDTO clientDTO)
+        public async Task<ActionResult<ClientGetDTO>> PutClient(int id, ClientPostDTO clientDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -89,7 +101,7 @@ namespace PartesCampAPI.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClient(int id)
+        public async Task<ActionResult<ClientGetDTO>> DeleteClient(int id)
         {
             var result = await _clientService.DeleteAsync(id);
 

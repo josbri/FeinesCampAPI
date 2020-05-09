@@ -19,6 +19,16 @@ namespace PartesCampAPI.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Client> FindByIdAsync(int id)
+        {
+            return await _clientRepository.FindByIdAsync(id);
+        }
+
+        public async Task<IEnumerable<Client>> FindByUserIdAsync(int id)
+        {
+            return await _clientRepository.FindListByConditionAsync(c => c.UserID == id);
+        }
+
         public async Task<ClientResponse> CreateAsync(Client client)
         {
             try
@@ -80,5 +90,7 @@ namespace PartesCampAPI.Services
                 return new ClientResponse($"An error occurred when deleting the client: {ex.Message}");
             }
         }
+
+        
     }
 }

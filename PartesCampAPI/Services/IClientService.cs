@@ -10,7 +10,9 @@ namespace PartesCampAPI.Services
     public interface IClientService
     {
         //Task<IEnumerable<Client>> ListAsync();
+        Task<Client> FindByIdAsync(int id);
 
+        Task<IEnumerable<Client>> FindByUserIdAsync(int id);
         Task<ClientResponse> CreateAsync(Client client);
 
         Task<ClientResponse> UpdateAsync(int id, Client client);
