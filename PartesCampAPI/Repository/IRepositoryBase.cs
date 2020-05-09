@@ -9,13 +9,15 @@ namespace PartesCampAPI.Repository
     public interface IRepositoryBase<T> where T : class
     {
        // Task<IEnumerable<T>> GetAllAsync();
-        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression);
-        Task<IEnumerable<T>> GetByCondition(Expression<Func<T, bool>> expression);
+        Task<T> FindFirstByConditionAsync(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> FindListByConditionAsync(Expression<Func<T, bool>> expression);
 
-        void Create(T entity);
+        void Add(T entity);
         void Update(T entity);
-        void Delete(T entity);
+        void Remove(T entity);
 
-        
+
+
+
     }
 }

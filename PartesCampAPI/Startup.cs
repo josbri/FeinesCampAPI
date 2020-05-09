@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using AutoMapper;
 using PartesCampAPI.Repository;
+using PartesCampAPI.Services;
 
 namespace PartesCampAPI
 {
@@ -28,12 +29,14 @@ namespace PartesCampAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
 
+            //Binding to classes:
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
 
             services.AddAuthentication(options =>
@@ -58,7 +61,6 @@ namespace PartesCampAPI
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

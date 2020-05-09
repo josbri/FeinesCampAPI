@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PartesCampAPI.Repository
 {
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         #region Constructor
-        protected  PartesCampContext _context;
+        protected  readonly PartesCampContext _context;
 
         public RepositoryBase(PartesCampContext context)
         {
@@ -20,44 +20,29 @@ namespace PartesCampAPI.Repository
         #endregion
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression)
         {
-            return await _context.Set<T>().FirstOrDefaultAsync(expression);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task<IEnumerable<T>> GetByCondition(Expression<Func<T,bool>> expression)
+        public async Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T,bool>> expression)
         {
-            return await _context.Set<T>().Where(expression).ToListAsync();
+            return await _context.Set<T>().Where(expression).AsNoTracking().ToListAsync();
         }
 
 
-        public void Create(T entity)
+        public void Add(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
             _context.Set<T>().Add(entity);
         }
 
-        public void Delete(T entity)
+        public void Remove(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
             _context.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
             _context.Set<T>().Update(entity);
         }
-    
-
-
 
     }
 }

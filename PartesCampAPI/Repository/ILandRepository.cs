@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace PartesCampAPI.Repository
 {
-    public interface IClientRepository : IRepositoryBase<Client>
+    public interface ILandRepository :  IRepositoryBase<Land>
     {
-        //Override to include Land.
-        public Task<Client> FindByIdAsync(int id);
     }
 }

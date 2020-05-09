@@ -9,7 +9,9 @@ using PartesCampAPI.Models;
 using PartesCampAPI.data;
 using Microsoft.AspNetCore.Authorization;
 using PartesCampAPI.Repository;
+using PartesCampAPI.Extensions;
 using AutoMapper;
+using PartesCampAPI.Services;
 
 namespace PartesCampAPI.Controllers
 {
@@ -18,12 +20,12 @@ namespace PartesCampAPI.Controllers
    
     public class ClientsController : ControllerBase
     {
-        private readonly IClientRepository _clientRepository;
+        private readonly IClientService _clientService;
         private readonly IMapper _mapper;
 
-        public ClientsController(IClientRepository clientRepository, IMapper mapper)
+        public ClientsController(IClientService clientService, IMapper mapper)
         {
-            _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
+            _clientService = clientService ?? throw new ArgumentNullException(nameof(clientService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -32,7 +34,7 @@ namespace PartesCampAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ClientGetDTO>> GetClient(int id)
         {
-            var clientEntity = await _clientRepository.GetByIdAsync(id);
+            var clientEntity = await _clientRepository.GetByConditionAsync(id);
 
             if (clientEntity == null)
             {
@@ -44,47 +46,62 @@ namespace PartesCampAPI.Controllers
 
         // PUT: api/Clients/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, Client client)
+        public async Task<IActionResult> PutClient(int id, ClientPostDTO clientDTO)
         {
-            //if (id != client.ID)
-            //{
-            //    return BadRequest();
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
 
-            //_context.Entry(client).State = EntityState.Modified;
+            var client = _mapper.Map<Client>(clientDTO);
+            var result = await _clientService.UpdateAsync(id, client);
 
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ClientExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
 
-            return NoContent();
+
+            return Ok(_mapper.Map<ClientGetDTO>(result.Client));
         }
 
         // POST: api/Clients
         [HttpPost]
         public async Task<ActionResult<ClientGetDTO>> PostClient(ClientPostDTO clientDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+
             var clientEntity = _mapper.Map<Client>(clientDTO);
-            _clientRepository.Create(clientEntity);
 
-            await _clientRepository.SaveChangesAsync();
-            await _clientRepository.GetByIdAsync(clientEntity.ID);
+            var result = await _clientService.CreateAsync(clientEntity);
 
-            return CreatedAtAction("GetClient", new { id = clientEntity.ID }, _mapper.Map<ClientGetDTO>(clientEntity));
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+
+            return CreatedAtAction("GetClient", new { id = result.Client.ID }, _mapper.Map<ClientGetDTO>(result.Client));
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var result = await _clientService.DeleteAsync(id);
+
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            var clientGetDTO = _mapper.Map<ClientGetDTO>(result.Client);
+
+            return Ok(clientGetDTO);
+        }
   
     }
 }
