@@ -20,7 +20,7 @@ namespace PartesCampAPI.Services
 
         public async Task<User> FindByJwtId(string id)
         {
-            return await _userRepository.FindFirstByConditionAsync(u => u.UserID == id);
+            return await _userRepository.FindByJwtAsync(id);
         }
 
         public async Task<UserResponse> CreateAsync(User user)

@@ -10,5 +10,8 @@ namespace PartesCampAPI.Models
         public string Name { get; set; }
         public int UserID { get; set; }
 
+
+        ClientPostDTO() { }
+
     }
 }

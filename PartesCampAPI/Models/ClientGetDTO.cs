@@ -11,8 +11,11 @@ namespace PartesCampAPI.Models
 
         public string Name { get; set; }
 
-        public List<LandGetDTO> Land { get; set; }
+        public List<LandGetInTaskDTO> Land { get; set; }
 
         public int UserID { get; set; }
+
+
+        ClientGetDTO() { }
     }
 }

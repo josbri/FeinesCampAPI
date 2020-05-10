@@ -8,5 +8,7 @@ namespace PartesCampAPI.Repository
 {
     public interface IUserRepository : IRepositoryBase<User>
     {
+
+        public Task<User> FindByJwtAsync(string id);
     }
 }

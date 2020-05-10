@@ -31,13 +31,19 @@ namespace PartesCampAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+
 
             //Binding to classes:
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            //services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             services.AddAuthentication(options =>
             {

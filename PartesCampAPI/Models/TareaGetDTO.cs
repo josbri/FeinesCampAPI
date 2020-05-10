@@ -13,7 +13,7 @@ namespace PartesCampAPI.Models
 
         public int LandID { get; set; }
 
-        public LandGetDTO Land { get; set; }
+        public LandGetInTaskDTO Land { get; set; }
 
         public int OwnerID { get; set; }
 
@@ -28,7 +28,7 @@ namespace PartesCampAPI.Models
 
         public bool Completed { get; set; }
 
-        public TareaGetDTO(int iD, string name, int landID, LandGetDTO land, int ownerID, string owner, DateTime created, DateTime finished, string commentPre, string commentPro, bool completed)
+        public TareaGetDTO(int iD, string name, int landID, LandGetInTaskDTO land, int ownerID, string owner, DateTime created, DateTime finished, string commentPre, string commentPro, bool completed)
         {
             ID = iD;
             Name = name;

@@ -40,7 +40,7 @@ namespace PartesCampAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<ClientGetDTO>(clientEntity));
+            return Ok(_mapper.Map<IEnumerable<ClientGetDTO>>(clientEntity));
         }
         // GET: api/Clients/5
         [HttpGet("{id}")]

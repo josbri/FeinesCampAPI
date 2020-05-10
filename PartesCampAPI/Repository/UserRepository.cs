@@ -1,4 +1,5 @@
-﻿using PartesCampAPI.data;
+﻿using Microsoft.EntityFrameworkCore;
+using PartesCampAPI.data;
 using PartesCampAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace PartesCampAPI.Repository
     {
         public UserRepository(PartesCampContext context) : base(context) { }
 
+
+        public async Task<User> FindByJwtAsync(string id)
+        {
+
+            return await _context.Users.Include(u => u.Clients).Include(u => u.Tasks).AsNoTracking().FirstOrDefaultAsync(c => c.UserID == id);
+        }
 
     }
 }

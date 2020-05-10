@@ -14,11 +14,7 @@ namespace PartesCampAPI.Models
 
         public string Email { get; set; }
 
-        public UserPostDTO(string name, string userID, string email)
-        {
-            Name = name;
-            UserID = userID;
-            Email = email;
-        }
+
+        public UserPostDTO() { }
     }
 }
