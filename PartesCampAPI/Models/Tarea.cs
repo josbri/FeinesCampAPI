@@ -18,7 +18,7 @@ namespace PartesCampAPI.Models
 
         public Land Land { get; set; }
 
-        public DateTime Created { get; set; } = new DateTime();
+        public DateTime Created { get; set; }
 
         public DateTime Finished { get; set; }
 

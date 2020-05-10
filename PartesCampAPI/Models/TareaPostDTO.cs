@@ -14,17 +14,22 @@ namespace PartesCampAPI.Models
         public int ClientID { get; set; }
         public bool Completed { get; set; }
 
+        public DateTime Created { get; set; }
+
+        public DateTime Finished { get; set; }
         public string CommentsPre { get; set; }
 
         public string CommentsPost { get; set; }
 
         public float Time { get; set; }
 
-        public TareaPostDTO(string name, int landID, int clientID, bool completed, string commentsPre, string commentsPost, float time)
+        public TareaPostDTO(string name, int landID, int clientID, bool completed, DateTime created, DateTime finished, string commentsPre, string commentsPost, float time)
         {
             Name = name;
             LandID = landID;
             ClientID = clientID;
+            Created = created;
+            Finished = finished;
             Completed = completed;
             CommentsPre = commentsPre;
             CommentsPost = commentsPost;
