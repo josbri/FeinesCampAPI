@@ -25,6 +25,7 @@ namespace PartesCampAPI.Mapping
 
             //Lands
             CreateMap<Land, LandGetDTO>();
+            CreateMap<Land, LandGetInTaskDTO>();
             CreateMap<LandPostDTO, Land>();
         }
     }

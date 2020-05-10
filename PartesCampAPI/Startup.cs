@@ -43,6 +43,8 @@ namespace PartesCampAPI
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<ILandService, LandService>();
+            services.AddScoped<ILandRepository, LandRepository>();
             //services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             services.AddAuthentication(options =>

@@ -16,7 +16,7 @@ namespace PartesCampAPI.Repository
         public async Task<User> FindByJwtAsync(string id)
         {
 
-            return await _context.Users.Include(u => u.Clients).Include(u => u.Tasks).AsNoTracking().FirstOrDefaultAsync(c => c.UserID == id);
+            return await _context.Users.Include(u => u.Clients).ThenInclude(c => c.Land).Include(u => u.Tasks).AsNoTracking().FirstOrDefaultAsync(c => c.UserID == id);
         }
 
     }
