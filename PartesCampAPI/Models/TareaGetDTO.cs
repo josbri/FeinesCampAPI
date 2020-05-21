@@ -15,10 +15,9 @@ namespace PartesCampAPI.Models
 
         public LandGetInTaskDTO Land { get; set; }
 
-        public int OwnerID { get; set; }
+        public string ClientName { get; set; }
 
-        public string Owner { get; set; }
-
+        public int UserID { get; set; }
         public DateTime Created { get; set; }
 
         public DateTime Finished { get; set; }
@@ -27,21 +26,12 @@ namespace PartesCampAPI.Models
         public string CommentPro { get; set; }
 
         public bool Completed { get; set; }
+        
+        public bool Facturada { get; set; }
+        public string Image { get; set; }
 
-        public TareaGetDTO(int iD, string name, int landID, LandGetInTaskDTO land, int ownerID, string owner, DateTime created, DateTime finished, string commentPre, string commentPro, bool completed)
-        {
-            ID = iD;
-            Name = name;
-            LandID = landID;
-            Land = land;
-            OwnerID = ownerID;
-            Owner = owner;
-            Created = created;
-            Finished = finished;
-            CommentPre = commentPre;
-            CommentPro = commentPro;
-            Completed = completed;
-        }
+        public float Time { get; set; }
+
 
         public TareaGetDTO () { }
     }

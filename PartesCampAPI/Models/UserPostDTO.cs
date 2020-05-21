@@ -10,7 +10,7 @@ namespace PartesCampAPI.Models
 
         public string Name { get; set; }
 
-        public string UserID { get; set; }
+        public string JwtID { get; set; }
 
         public string Email { get; set; }
 

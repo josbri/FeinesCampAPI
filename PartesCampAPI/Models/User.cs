@@ -15,14 +15,12 @@ namespace PartesCampAPI.Models
 
         public string Name { get; set; }
 
-        public string UserID { get; set; }
+        public string JwtID { get; set; }
 
         public string Email { get; set; }
-
         public List<Client> Clients {get; set; }
 
         public List<Tarea> Tasks { get; set; }
-        
         public User() { }
 
     }

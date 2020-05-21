@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 
 namespace PartesCampAPI.Models
 {
-    public class LandGetDTO
+    public class ClientGetInLandDTO
     {
+
         public int ID { get; set; }
 
         public string Name { get; set; }
 
-        public int ClientID { get; set; }
+        public int UserID { get; set; }
 
+        public ClientGetInLandDTO() { }
 
-        public LandGetDTO() { }
     }
 }

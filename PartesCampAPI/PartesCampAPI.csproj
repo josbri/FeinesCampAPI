@@ -9,6 +9,40 @@
     <Compile Remove="Migrations\20200411161422_firstMigration.Designer.cs" />
     <Compile Remove="Migrations\20200412111851_First.cs" />
     <Compile Remove="Migrations\20200412111851_First.Designer.cs" />
+    <Compile Remove="Migrations\20200520220158_userid.cs" />
+    <Compile Remove="Migrations\20200520220158_userid.Designer.cs" />
+    <Compile Remove="Migrations\20200520220506_userid.cs" />
+    <Compile Remove="Migrations\20200520220506_userid.Designer.cs" />
+    <Compile Remove="Migrations\20200520220805_userid.cs" />
+    <Compile Remove="Migrations\20200520220805_userid.Designer.cs" />
+    <Compile Remove="Migrations\20200520221111_userid.cs" />
+    <Compile Remove="Migrations\20200520221111_userid.Designer.cs" />
+    <Compile Remove="Migrations\20200520222744_clientId.cs" />
+    <Compile Remove="Migrations\20200520222744_clientId.Designer.cs" />
+    <Compile Remove="Migrations\20200520222831_clientId2.cs" />
+    <Compile Remove="Migrations\20200520222831_clientId2.Designer.cs" />
+    <Compile Remove="Migrations\20200520223426_includeclientintask.cs" />
+    <Compile Remove="Migrations\20200520223426_includeclientintask.Designer.cs" />
+    <Compile Remove="Migrations\20200520223833_includeclientintask.cs" />
+    <Compile Remove="Migrations\20200520223833_includeclientintask.Designer.cs" />
+    <Compile Remove="Migrations\20200520224907_includeclientintask.cs" />
+    <Compile Remove="Migrations\20200520224907_includeclientintask.Designer.cs" />
+    <Compile Remove="Migrations\20200520225346_userIdtojwtid.cs" />
+    <Compile Remove="Migrations\20200520225346_userIdtojwtid.Designer.cs" />
+    <Compile Remove="Migrations\20200520225509_userIdtojwtid2.cs" />
+    <Compile Remove="Migrations\20200520225509_userIdtojwtid2.Designer.cs" />
+    <Compile Remove="Migrations\20200520230049_userIdtojwtid2.cs" />
+    <Compile Remove="Migrations\20200520230049_userIdtojwtid2.Designer.cs" />
+    <Compile Remove="Migrations\20200520230217_userIdtojwtid2.cs" />
+    <Compile Remove="Migrations\20200520230217_userIdtojwtid2.Designer.cs" />
+    <Compile Remove="Migrations\20200521071630_postchanges.cs" />
+    <Compile Remove="Migrations\20200521071630_postchanges.Designer.cs" />
+    <Compile Remove="Migrations\20200521071800_postchanges.cs" />
+    <Compile Remove="Migrations\20200521071800_postchanges.Designer.cs" />
+    <Compile Remove="Migrations\20200521072026_postchanges.cs" />
+    <Compile Remove="Migrations\20200521072026_postchanges.Designer.cs" />
+    <Compile Remove="Migrations\20200521072251_postchanges.cs" />
+    <Compile Remove="Migrations\20200521072251_postchanges.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

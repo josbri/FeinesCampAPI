@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PartesCampAPI.data;
 
 namespace PartesCampAPI.Migrations
 {
     [DbContext(typeof(PartesCampContext))]
-    partial class PartesCampContextModelSnapshot : ModelSnapshot
+    [Migration("20200512145200_facturada")]
+    partial class facturada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace PartesCampAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -46,7 +48,7 @@ namespace PartesCampAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClientID")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -66,9 +68,6 @@ namespace PartesCampAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClientName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CommentsPost")
                         .HasColumnType("nvarchar(max)");
 
@@ -87,10 +86,7 @@ namespace PartesCampAPI.Migrations
                     b.Property<DateTime>("Finished")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LandID")
+                    b.Property<int>("LandID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -99,7 +95,7 @@ namespace PartesCampAPI.Migrations
                     b.Property<float>("Time")
                         .HasColumnType("real");
 
-                    b.Property<int>("UserID")
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -121,10 +117,10 @@ namespace PartesCampAPI.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JwtID")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("UserID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -136,27 +132,31 @@ namespace PartesCampAPI.Migrations
                 {
                     b.HasOne("PartesCampAPI.Models.User", "User")
                         .WithMany("Clients")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PartesCampAPI.Models.Land", b =>
                 {
                     b.HasOne("PartesCampAPI.Models.Client", "Client")
                         .WithMany("Land")
-                        .HasForeignKey("ClientID");
+                        .HasForeignKey("ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PartesCampAPI.Models.Tarea", b =>
                 {
                     b.HasOne("PartesCampAPI.Models.Land", "Land")
-                        .WithMany()
-                        .HasForeignKey("LandID");
-
-                    b.HasOne("PartesCampAPI.Models.User", "User")
                         .WithMany("Tasks")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("LandID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PartesCampAPI.Models.User", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserID");
                 });
 #pragma warning restore 612, 618
         }

@@ -22,6 +22,7 @@ namespace PartesCampAPI.Mapping
             //Clients
             CreateMap<Client, ClientGetDTO>();
             CreateMap<ClientPostDTO, Client>();
+            CreateMap<Client, ClientGetInLandDTO>();
 
             //Lands
             CreateMap<Land, LandGetDTO>();

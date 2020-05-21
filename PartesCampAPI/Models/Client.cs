@@ -14,11 +14,9 @@ namespace PartesCampAPI.Models
         public int ID { get; set; }
 
         public string Name { get; set; }
-
-        public List<Land> Land {get ; set; }
-
         public int UserID { get; set; }
         public User User { get; set; }
+        public List<Land> Land {get ; set; }
 
         public Client() { }
     }

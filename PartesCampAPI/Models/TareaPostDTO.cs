@@ -10,8 +10,6 @@ namespace PartesCampAPI.Models
         public string Name { get; set; }
 
         public int LandID { get; set; }
-
-        public int ClientID { get; set; }
         public bool Completed { get; set; }
 
         public DateTime Created { get; set; }
@@ -21,19 +19,27 @@ namespace PartesCampAPI.Models
 
         public string CommentsPost { get; set; }
 
+        public string ClientName { get; set; }
+
         public float Time { get; set; }
 
-        public TareaPostDTO(string name, int landID, int clientID, bool completed, DateTime created, DateTime finished, string commentsPre, string commentsPost, float time)
+        public string Image { get; set; }
+
+        public int UserID { get; set; }
+
+        public TareaPostDTO(string name, int landID, string clientname, int clientID, int userid, bool completed, string image, DateTime created, DateTime finished, string commentsPre, string commentsPost, float time)
         {
+            ClientName = clientname;
             Name = name;
             LandID = landID;
-            ClientID = clientID;
             Created = created;
             Finished = finished;
             Completed = completed;
             CommentsPre = commentsPre;
             CommentsPost = commentsPost;
             Time = time;
+            Image = image;
+            UserID = userid;
         }
 
         public TareaPostDTO() { }
